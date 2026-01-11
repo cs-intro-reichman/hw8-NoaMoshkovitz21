@@ -46,7 +46,7 @@ public class Network {
         if (name == null || userCount >= users.length || getUser(name) != null) {
             return false;
         }
-        users[userCount] = new User(name); // Construct new User object [cite: 55]
+        users[userCount] = new User(name); 
         userCount++;
         return true;
     }
@@ -57,8 +57,7 @@ public class Network {
     public boolean addFollowee(String name1, String name2) {
         User u1 = getUser(name1);
         User u2 = getUser(name2);
-        // Validations: users must exist and not be the same person [cite: 226]
-        if (u1 == null || u2 == null || name1.equalsIgnoreCase(name2)) {
+        if (u1 == null || u2 == null || name1.equals(name2)) {
             return false;
         }
         return u1.addFollowee(name2);
@@ -74,7 +73,7 @@ public class Network {
         int maxMutuals = -1;
 
         for (int i = 0; i < userCount; i++) {
-            if (users[i].getName().equalsIgnoreCase(name)) continue; // Skip self [cite: 230]
+            if (users[i].getName().equals(name)) continue; 
             if (user.follows(users[i].getName())) continue; // Already follows
 
             int mutuals = user.countMutual(users[i]);
